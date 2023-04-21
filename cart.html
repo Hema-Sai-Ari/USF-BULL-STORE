@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .logo {
+      float: left;
+      height: 50px;
+      padding: 5px 5px 5px 16px;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: aliceblue;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
+    <img class="logo" src="./images/USF-logo.jpg" alt="logo" />
+    <a class="navbar-brand" href="home2.html">USF Bulls Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home2.html"><i class="fa fa-home"></i>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about2.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signin2.html">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cart" href="cart.html">
+            Cart <i class="fas fa-shopping-cart"></i>
+            <span class="item-count"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="container mt-5 pt-5 content">
+    <h2>Your Cart</h2>
+    <div class="cart-items">
+      <div class="row font-weight-bold mb-3">
+        <div class="col-4 col-lg-6">Name</div>
+        <div class="col-4">Price</div>
+      </div>
+      <!-- Cart items will be appended here -->
+    </div>
+    <div class="total-price d-flex justify-content-end mt-3">
+      <h4>Total: <span class="price"></span></h4>
+    </div>
+    <div class="checkout-btn-container d-flex justify-content-end mt-3">
+      <button class="btn btn-success" id="checkout-btn">Checkout</button>
+    </div>
+  </section>
+
+  <footer class="bg-success py-3">
+    <div class="container text-center">
+      <p class="mb-0 text-white">&copy; 2023 USF Bulls Store</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  <script>
+    function updateCartButton() {
+      var cart = JSON.parse(localStorage.getItem('cart'));
+      var numItems = cart ? cart.length : 0;
+      $('.nav-link.cart').html('Cart <i class="fas fa-shopping-cart"></i> (' + numItems + ')');
+    }
+
+    function loadCartItems() {
+      var cart = JSON.parse(localStorage.getItem('cart')) || [];
+      var totalPrice = 0;
+
+      cart.forEach(function (item, index) {
+        var cartItem = $('<div class="row cart-item mb-3 border-bottom pb-3"></div>');
+
+        var infoDiv = $('<div class="col-4 col-lg-6"></div>');
+        var itemName = $('<h4>' + item.name + '</h4>');
+        infoDiv.append(itemName);
+
+        var priceDiv = $('<div class="col-4"></div>');
+        var itemPrice = $('<p>' + item.price + '</p>');
+        priceDiv.append(itemPrice);
+
+        var removeDiv = $('<div class="col-2"></div>');
+        var removeButton = $('<button class="btn btn-danger remove-btn" data-index="' + index + '">Remove</button>');
+        removeDiv.append(removeButton);
+
+        cartItem.append(infoDiv);
+        cartItem.append(priceDiv);
+        cartItem.append(removeDiv);
+
+        $('.cart-items').append(cartItem);
+
+        var price = parseFloat(item.price.replace('$', ''));
+        totalPrice += price;
+      });
+
+      $('.total-price .price').text('$' + totalPrice.toFixed(2));
+    }
+
+    function removeFromCart(index) {
+      var cart = JSON.parse(localStorage.getItem('cart'));
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartButton();
+      loadCartItems();
+    }
+
+    $(document).ready(function () {
+      updateCartButton();
+      loadCartItems();
+
+      $('body').on('click', '.remove-btn', function () {
+        var index = $(this).data('index');
+        removeFromCart(index);
+        $('.cart-items').html('');
+        loadCartItems();
+      });
+    });
+  </script>
+</body>
+
+</html>

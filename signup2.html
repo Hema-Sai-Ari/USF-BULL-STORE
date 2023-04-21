@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .logo {
+      float: left;
+      height: 50px;
+      padding: 5px 5px 5px 16px;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+      color: aliceblue;
+    }
+
+    footer {
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
+    <!-- USF Bulls Store brand -->
+    <img class="logo" src="./images/USF-logo.jpg" alt="logo" />
+    <a class="navbar-brand" href="home2.html">USF Bulls Store</a>
+    <!-- Hamburger button for small screens -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home2.html"><i class="fa fa-home"></i>Home</a>
+        </li>
+        <!-- About button -->
+        <li class="nav-item">
+          <a class="nav-link" href="about2.html">About</a>
+        </li>
+        <!-- Sign In button -->
+        <li class="nav-item">
+          <a class="nav-link" href="signin2.html">Sign In</a>
+        </li>
+        <!-- Cart button with icon -->
+        <li class="nav-item">
+          <a class="nav-link cart" href="cart.html">
+            Cart <i class="fa fa-shopping-cart"></i>
+            <span class="item-count"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            <h4 class="card-title mb-0">Sign Up</h4>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-success mt-3" id="successAlert" role="alert" style="display:none;">
+              Account created successfully!
+            </div>
+            <form id="signUpForm">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Enter first name">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Enter last name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password">
+              </div>
+              <div class="form-group">
+                <label for="passwordConfirmation">Confirm Password</label>
+                <input type="password" class="form-control" id="passwordConfirmation" placeholder="Confirm password">
+              </div>
+              <button type="submit" class="btn btn-success">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-success py-3">
+    <div class="container text-center">
+      <p class="mb-0 text-white">&copy; 2023 USF Bulls Store</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("signUpForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      // Add your sign up functionality here, like sending data to the server, and checking for success
+
+      // Show the success alert
+      document.getElementById("successAlert").style.display = "block";
+    });
+  </script>
+</body>
+
+</html>
