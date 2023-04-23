@@ -131,6 +131,10 @@
         <li class="nav-item">
           <a class="nav-link" href="signin2.html">Sign In</a>
         </li>
+        <!-- Sign In button -->
+        <li class="nav-item">
+          <a class="nav-link" href="analytics.html">Analytics</a>
+        </li>
         <!-- Cart button with icon -->
         <li class="nav-item">
           <a class="nav-link cart" href="cart.html">
@@ -426,9 +430,7 @@
   </section>
   
 
-  <div class="chart-container">
-    <canvas id="salesChart"></canvas>
-  </div>
+
   <footer class="bg-success py-3">
     <div class="container text-center">
       <p class="mb-0 text-white">&copy; 2023 USF Bulls Store</p>
@@ -519,52 +521,7 @@
       updateCartButton();
     });
   </script>
-  <script>
-    const data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [{
-        label: 'Men Clothing Monthly Sales',
-        data: [1500, 1800, 2100, 1700, 1900, 1500, 3200, 3570, 2800, 4000, 7350, 4500],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      },
-      {
-        label: 'Women clothing Monthly Sales',
-        data: [500, 770, 1700, 1790, 1813, 1521, 1412, 1570, 991, 2222, 5555, 1111],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-      }]
-    };
-
-    const config = {
-      type: 'bar',
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Monthly Sales'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    };
-
-    var salesChart = new Chart(
-      document.getElementById('salesChart'),
-      config
-    );
-  </script>
+  
 
 </body>
 
